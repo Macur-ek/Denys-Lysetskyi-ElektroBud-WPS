@@ -1,0 +1,127 @@
+﻿<Window x:Class="Denys_Lysetskyi_ElektroBud.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Elektro-Bud - Magazyn"
+        Height="650"
+        Width="1000"
+        MinHeight="500"
+        MinWidth="750"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="Elektro-Bud - Zarządzanie magazynem"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   Margin="0,0,0,15"/>
+
+        <DataGrid Grid.Row="1"
+                  x:Name="ProductsGrid"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  SelectionMode="Single"
+                  Margin="0,0,0,15">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID"
+                                    Binding="{Binding Id}"
+                                    Width="50"/>
+
+                <DataGridTextColumn Header="Nazwa produktu"
+                                    Binding="{Binding Name}"
+                                    Width="*"/>
+
+                <DataGridTextColumn Header="Jednostka"
+                                    Binding="{Binding Unit}"
+                                    Width="80"/>
+
+                <DataGridTextColumn Header="Stan magazynowy"
+                                    Binding="{Binding Quantity}"
+                                    Width="130"/>
+
+                <DataGridTextColumn Header="Stan minimalny"
+                                    Binding="{Binding MinimumQuantity}"
+                                    Width="120"/>
+
+                <DataGridTextColumn Header="Cena"
+                                    Binding="{Binding Price, StringFormat=N2}"
+                                    Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="2">
+            <TextBlock Text="Dodaj produkt"
+                       FontSize="18"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,8"/>
+
+            <WrapPanel Margin="0,0,0,10">
+                <TextBox x:Name="NameTextBox"
+                         Width="180"
+                         Margin="0,0,8,8"
+                         Padding="6"
+                         ToolTip="Nazwa produktu"/>
+
+                <TextBox x:Name="UnitTextBox"
+                         Text="szt."
+                         Width="65"
+                         Margin="0,0,8,8"
+                         Padding="6"
+                         ToolTip="Jednostka"/>
+
+                <TextBox x:Name="QuantityTextBox"
+                         Width="90"
+                         Margin="0,0,8,8"
+                         Padding="6"
+                         ToolTip="Początkowa ilość"/>
+
+                <TextBox x:Name="MinimumTextBox"
+                         Width="90"
+                         Margin="0,0,8,8"
+                         Padding="6"
+                         ToolTip="Stan minimalny"/>
+
+                <TextBox x:Name="PriceTextBox"
+                         Width="90"
+                         Margin="0,0,8,8"
+                         Padding="6"
+                         ToolTip="Cena jednostkowa"/>
+
+                <Button Content="Dodaj produkt"
+                        Padding="12,6"
+                        Margin="0,0,8,8"
+                        Click="AddProduct_Click"/>
+            </WrapPanel>
+
+            <TextBlock Text="Operacje magazynowe"
+                       FontSize="18"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,8"/>
+
+            <WrapPanel>
+                <TextBox x:Name="OperationQuantityTextBox"
+                         Width="130"
+                         Padding="6"
+                         Margin="0,0,8,8"
+                         ToolTip="Ilość przyjęcia lub wydania"/>
+
+                <Button Content="Przyjęcie"
+                        Padding="14,6"
+                        Margin="0,0,8,8"
+                        Click="Receive_Click"/>
+
+                <Button Content="Wydanie"
+                        Padding="14,6"
+                        Margin="0,0,8,8"
+                        Click="Issue_Click"/>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</Window>
